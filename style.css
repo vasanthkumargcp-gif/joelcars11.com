@@ -1,120 +1,147 @@
-:root {
-  --page-padding: 0px 8%;
-  --main-bg: #111;
-  --box-bg: #222;
-  --nav-bg: #222;
-  --name-color: #f8f8f8;
-  --header-btnH-color: #b8860b; /* Golden */
-  --header-Card-color: #b8870b3f;
-  --card-bg-text: #ffffff;
-  --Box-shadow: #ffffffa8;
-  --shadow-btn: #000000;
-  --footer-bg: #111;
-  --modal-bg: #fff;
-}
-
-html { background-color: var(--main-bg); transition: all 0.5s; color: var(--name-color); scroll-behavior: smooth; }
-
-body { 
-  padding: var(--page-padding); 
-  background: linear-gradient(to bottom, #111, #222); /* Static gradient color background */
-  background-size: cover;
-  background-attachment: fixed;
-  min-height: 100vh;
-  /* If you want image: background: url('assets/bg.jpg') no-repeat center fixed; background-size: cover; */
-}
-
-a, button { transition: all 0.3s; }
-a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px var(--header-btnH-color); }
-
-/* Car sections grid */
+/* Car sections grid - wider for better layout */
 #for-sale-container, #sold-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Wider for gallery */
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
   padding: 20px 0;
+  justify-items: center;
 }
 
 /* Individual car card */
 .car-card, .sold-card {
   background: var(--box-bg);
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: all 0.3s;
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
 }
 
 .car-card:hover, .sold-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(218, 165, 32, 0.7); /* Golden glow */
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Car name */
 .car-card h3 {
-  color: goldenrod;
+  color: #fff;
   margin-bottom: 15px;
-  font-size: 1.5em;
+  font-size: 1.3em;
+  text-transform: capitalize;
+  font-weight: 600;
 }
 
-/* Gallery container */
+/* Gallery container - side by side layout */
 .gallery {
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  gap: 15px;
   align-items: flex-start;
+  justify-content: center;
 }
 
 /* Thumbnails vertical on left */
 .thumbnails {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 0 0 100px;
+  gap: 8px;
+  flex: 0 0 70px;
 }
 
 .thumbnails img {
-  width: 80px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 70px;
+  height: 50px;
+  object-fit: contain; /* Changed to contain to show full image */
+  background-color: #333;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 0 5px rgba(218, 165, 32, 0.3);
+  transition: all 0.2s;
+  padding: 2px;
+  border: 2px solid transparent;
 }
 
 .thumbnails img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px goldenrod; /* Glow on hover */
+  border-color: #555;
 }
 
-/* Main image on right */
+.thumbnails img.active {
+  border-color: #b8860b;
+}
+
+/* Main image container */
+.main-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-image img {
   width: 300px;
   height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 15px goldenrod; /* Constant glow */
-  transition: all 0.3s;
+  object-fit: contain; /* Changed to contain to show full image without cropping */
+  background-color: #333;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
+  padding: 5px;
 }
 
-.main-image img:hover {
-  box-shadow: 0 0 25px goldenrod;
+/* Sold cards - show full image */
+.sold-card {
+  padding: 15px;
 }
 
-/* Sold cards */
 .sold-card img {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+  object-fit: contain; /* Changed to contain */
+  background-color: #333;
+  border-radius: 8px;
   margin-bottom: 10px;
-  box-shadow: 0 0 15px goldenrod;
-  transition: all 0.3s;
+  padding: 5px;
 }
 
-.sold-card img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px goldenrod;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #for-sale-container, #sold-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .thumbnails {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  
+  .thumbnails img {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .main-image img {
+    width: 280px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-card h3 {
+    font-size: 1.1em;
+  }
+  
+  .main-image img {
+    width: 250px;
+    height: 160px;
+  }
+  
+  .sold-card img {
+    height: 180px;
+  }
 }
