@@ -123,7 +123,7 @@ nav {
 /* Car Sections */
 .car-section {
     padding: 4rem 5%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -144,10 +144,11 @@ nav {
     margin: 0 auto;
 }
 
+/* Available Cars - Only 2 per row + Bigger Images */
 .cars-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    gap: 3rem;
 }
 
 /* Car Cards */
@@ -174,28 +175,28 @@ nav {
     margin: 0;
 }
 
-/* Gallery Layout */
+/* Gallery Layout - Bigger */
 .gallery {
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .thumbnails {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    flex: 0 0 80px;
+    gap: 0.8rem;
+    flex: 0 0 100px;
 }
 
 .thumbnails img {
-    width: 80px;
-    height: 60px;
+    width: 100px;
+    height: 75px;
     object-fit: contain;
     background: #222;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    padding: 2px;
+    padding: 4px;
     border: 2px solid transparent;
     transition: all 0.3s;
 }
@@ -216,19 +217,40 @@ nav {
 }
 
 .main-image img {
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    max-width: 550px;
+    height: 380px;
     object-fit: contain;
     background: #222;
-    border-radius: 6px;
-    padding: 5px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
 }
 
-/* Sold Cards */
+/* Sold Cars Carousel Container */
+.sold-carousel-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.sold-carousel {
+    display: flex;
+    gap: 2rem;
+    animation: scrollSold 40s linear infinite; /* Adjust time based on number of cars (e.g., 5s per item) */
+    width: max-content;
+}
+
+.sold-carousel:hover {
+    animation-play-state: paused;
+}
+
 .sold-card {
+    flex: 0 0 420px;
+    min-width: 420px;
     background: rgba(30, 30, 30, 0.8);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,12 +259,17 @@ nav {
 
 .sold-card img {
     width: 100%;
-    max-width: 300px;
-    height: 200px;
+    max-width: 400px;
+    height: 300px;
     object-fit: contain;
     background: #222;
-    border-radius: 6px;
-    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@keyframes scrollSold {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* Loading Indicator */
@@ -423,6 +450,12 @@ footer {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .cars-container {
+        grid-template-columns: 1fr; /* 1 per row on tablets */
+    }
+}
+
 @media (max-width: 768px) {
     .pages {
         display: none;
@@ -452,12 +485,17 @@ footer {
     }
     
     .main-image img {
-        width: 250px;
-        height: 180px;
+        height: 280px;
+        max-width: 400px;
     }
     
-    .cars-container {
-        grid-template-columns: 1fr;
+    .sold-card {
+        flex: 0 0 300px;
+        min-width: 300px;
+    }
+    
+    .sold-card img {
+        height: 220px;
     }
     
     .footer-links {
