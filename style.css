@@ -14,3 +14,6 @@ a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px 
 .section-3-product-div img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
 footer { background: var(--footer-bg); padding: 20px; text-align: center; }
 footer p { margin: 5px 0; } /* For contact info */
+#for-sale-container, #sold-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.car-card, .sold-card { background: #222; padding: 15px; border-radius: 15px; text-align: center; box-shadow: 0 0 20px rgba(218, 165, 32, 0.5); }
+.car-card h3 { color: goldenrod; }
