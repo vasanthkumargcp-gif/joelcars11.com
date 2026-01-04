@@ -1,10 +1,6 @@
-// Template JS code... (include full from tool result)
-
-// Add this at the end for dynamic loading
-const owner = 'vasanthkumargcp-gif'; // Replace with your GitHub username
-const repo = 'joelcars11.com'; // Replace with your repo name
-const branch = 'main'; // Or your default branch
-// Keep any other template JS if you have it...
+const owner = 'vasanthkumargcp-gif';
+const repo = 'joelcars11.com';
+const branch = 'main';
 
 async function fetchFolderContents(path) {
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
@@ -20,7 +16,7 @@ async function fetchFolderContents(path) {
 
 async function loadCars(containerId, basePath, isForSale = true) {
   const container = document.getElementById(containerId);
-  container.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Loading cars...</p>';
+  container.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Loading...</p>';
 
   const items = await fetchFolderContents(basePath);
   container.innerHTML = '';
@@ -38,35 +34,53 @@ async function loadCars(containerId, basePath, isForSale = true) {
 
       carDiv.innerHTML = `<h3>${item.name.toUpperCase().replace(/-/g, ' ')}</h3>`;
 
+      const galleryDiv = document.createElement('div');
+      galleryDiv.className = 'gallery';
+
+      const thumbDiv = document.createElement('div');
+      thumbDiv.className = 'thumbnails';
+
+      const mainDiv = document.createElement('div');
+      mainDiv.className = 'main-image';
+      const mainImg = document.createElement('img');
+      mainImg.loading = 'lazy';
+      mainDiv.appendChild(mainImg);
+
+      galleryDiv.appendChild(thumbDiv);
+      galleryDiv.appendChild(mainDiv);
+      carDiv.appendChild(galleryDiv);
+
       const subItems = await fetchFolderContents(item.path);
       const images = subItems
         .filter(sub => sub.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(sub.name))
-        .sort((a, b) => a.name.localeCompare(b.name)); // Optional: sort by name
+        .map(sub => `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${sub.path}`);
 
       if (images.length === 0) {
         carDiv.innerHTML += '<p>No images</p>';
       } else {
-        // First image = Main photo
-        const mainImg = document.createElement('img');
-        mainImg.src = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${images[0].path}`;
-        mainImg.alt = 'Main';
-        mainImg.className = 'car-main-img';
-        mainImg.loading = 'lazy';
-        carDiv.appendChild(mainImg);
+        // Set initial main
+        mainImg.src = images[0];
 
-        // Rest = Thumbnails
-        if (images.length > 1) {
-          const thumbDiv = document.createElement('div');
-          thumbDiv.className = 'car-thumbnails';
-          for (let i = 1; i < images.length; i++) {
-            const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${images[i].path}`;
-            img.alt = images[i].name;
-            img.loading = 'lazy';
-            thumbDiv.appendChild(img);
-          }
-          carDiv.appendChild(thumbDiv);
-        }
+        // Create thumbnails
+        images.forEach((src, index) => {
+          const thumbImg = document.createElement('img');
+          thumbImg.src = src;
+          thumbImg.alt = `Thumb ${index}`;
+          thumbImg.addEventListener('click', () => {
+            mainImg.src = src;
+            currentIndex = index; // For auto-carousel sync
+          });
+          thumbDiv.appendChild(thumbImg);
+        });
+
+        // Auto-carousel
+        let currentIndex = 0;
+        const interval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % images.length;
+          mainImg.src = images[currentIndex];
+        }, 3000); // Every 3 seconds
+
+        // Stop interval if needed (e.g., on mouseover), but simple for now
       }
 
       container.appendChild(carDiv);
