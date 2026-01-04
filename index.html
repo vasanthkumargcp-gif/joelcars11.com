@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="dark">
     <header>
         <nav>
@@ -57,8 +59,10 @@
                 <h2>Recently Sold Cars</h2>
                 <p>See our successful transactions. New sold photos appear automatically.</p>
             </div>
-            <div class="cars-container" id="sold-container">
-                <!-- Sold cars will be loaded here by JavaScript -->
+            <div class="sold-carousel-container">
+                <div class="cars-container sold-carousel" id="sold-container">
+                    <!-- Sold cars will be loaded here by JavaScript -->
+                </div>
             </div>
             <div class="loading-indicator" id="loading-sold">
                 <div class="spinner"></div>
@@ -111,4 +115,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
