@@ -1,20 +1,5 @@
 :root {
   --page-padding: 0px 8%;
-  --main-bg: #f8f8f8;
-  --box-bg: #ebebebe8;
-  --nav-bg: rgb(240, 235, 235);
-  --name-color: #232323;
-  --header-btnH-color: #0e7fdb;
-  --header-Card-color: #0e7fdb41;
-  --card-bg-text: #343434;
-  --shadow: black;
-  --Box-shadow: #2323239f;
-  --shadow-btn: #232323;
-  --footer-bg: white;
-  --modal-bg: rgb(0, 0, 0);
-}
-
-.dark:root {
   --main-bg: #111;
   --box-bg: #222;
   --nav-bg: #222;
@@ -30,7 +15,14 @@
 
 html { background-color: var(--main-bg); transition: all 0.5s; color: var(--name-color); scroll-behavior: smooth; }
 
-body { padding: var(--page-padding); }
+body { 
+  padding: var(--page-padding); 
+  background: linear-gradient(to bottom, #111, #222); /* Static gradient color background */
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  /* If you want image: background: url('assets/bg.jpg') no-repeat center fixed; background-size: cover; */
+}
 
 a, button { transition: all 0.3s; }
 a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px var(--header-btnH-color); }
@@ -38,7 +30,7 @@ a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px 
 /* Car sections grid */
 #for-sale-container, #sold-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Wider for gallery */
   gap: 30px;
   padding: 20px 0;
 }
@@ -54,8 +46,8 @@ a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px 
 }
 
 .car-card:hover, .sold-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 25px rgba(218, 165, 32, 0.7); /* Strong golden glow */
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(218, 165, 32, 0.7); /* Golden glow */
 }
 
 /* Car name */
@@ -65,43 +57,64 @@ a:hover, button:hover { box-shadow: 0 0 10px var(--header-btnH-color), 0 0 20px 
   font-size: 1.5em;
 }
 
-/* Main image (first one) - medium size */
-.car-main-img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 0 15px goldenrod;
+/* Gallery container */
+.gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-/* Thumbnail gallery */
-.car-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+/* Thumbnails vertical on left */
+.thumbnails {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  flex: 0 0 100px;
 }
 
-.car-thumbnails img {
-  width: 100%;
-  height: 120px;
+.thumbnails img {
+  width: 80px;
+  height: 60px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(218, 165, 32, 0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px rgba(218, 165, 32, 0.3);
+}
+
+.thumbnails img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px goldenrod; /* Glow on hover */
+}
+
+/* Main image on right */
+.main-image img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 15px goldenrod; /* Constant glow */
   transition: all 0.3s;
 }
 
-.car-thumbnails img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px goldenrod;
+.main-image img:hover {
+  box-shadow: 0 0 25px goldenrod;
 }
 
-/* Sold cards - only thumbnails, no main image */
+/* Sold cards */
 .sold-card img {
   width: 100%;
-  height: 250px;
+  max-width: 250px;
+  height: 200px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
   box-shadow: 0 0 15px goldenrod;
+  transition: all 0.3s;
+}
+
+.sold-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px goldenrod;
 }
