@@ -1,35 +1,23 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Joel Cars - Buy & Sell Quality Used Cars at Better Prices. Find luxury, family, electric, and outdoor vehicles.">
-    <meta name="keywords" content="used cars, buy cars, sell cars, car dealership, pre-owned cars">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Joel Cars - Buy & Sell Quality Used Cars at Better Prices">
     <title>Joel Cars - Buy & Sell Used Cars at Better Prices</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
     <header>
-        <nav class="animate__animated animate__fadeInDown">
+        <nav>
             <ul id="nav-items">
                 <li id="Logo-brandname">
-                    <h1>🚗 Joel Cars</h1>
+                    <h1>Joel Cars</h1>
                 </li>
                 <li class="pages">
                     <a class="Home" href="#">Home</a>
                     <a class="Search" href="#cars-for-sale">Browse Cars</a>
-                </li>
-                <li class="pages">
-                    <button id="Moon" class="mode mode-switch" title="Switch Theme">
-                        <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="36" height="36" viewBox="0 0 24 24">
-                            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                        </svg>
-                    </button>
                 </li>
                 <i class='bx bx-menu hamburger-menu' id="hamburger-menu"></i>
             </ul>
@@ -39,111 +27,22 @@
                 <li><a href="#cars-sold">Sold Cars</a></li>
             </ul>
         </nav>
-        <section class="section-1 animate__animated animate__fadeIn">
-            <div class="section-1-product-dis hiddenCardsTwo">
-                <h1>Quality Used Cars at Unbeatable Prices</h1>
-                <p>Find your perfect vehicle from our curated collection. We buy and sell quality used cars with transparency and trust.</p>
-                <div class="cta-buttons">
-                    <a href="#cars-for-sale" class="btn-primary">Browse Cars</a>
-                    <a href="tel:+911234567890" class="btn-secondary">Call Now</a>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Cars Sold</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4.8★</span>
-                        <span class="stat-label">Customer Rating</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Support</span>
-                    </div>
-                </div>
-            </div>
-            <div class="section-1-product-img">
-                <div class="section-1-div-product-img-1 up-hidden">
-                    <img id="section-1-product-img-1" class="animate__animated animate__fadeInRight" src="assets/banner.jpg" alt="Luxury Car Banner - Joel Cars Collection" loading="lazy">
-                </div>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Buy & Sell Quality Used Cars</h1>
+                <p>We connect buyers and sellers for the best deals on used cars. Quality checked vehicles at competitive prices.</p>
+                <a href="#cars-for-sale" class="btn-primary">View Available Cars</a>
             </div>
         </section>
     </header>
     <main>
-        <section class="section-2">
-            <div class="section-2-header">
-                <h3 class="hiddenCardsTwo">Browse By Category</h3>
-                <p class="subtitle">Find the perfect car for your needs</p>
+        <!-- Cars For Sale Section -->
+        <section id="cars-for-sale" class="car-section">
+            <div class="section-header">
+                <h2>Available Cars For Sale</h2>
+                <p>Cars are automatically loaded from our repository. New cars appear when uploaded.</p>
             </div>
-            <div class="section-2-product-div hiddenP">
-                <div class="category-card">
-                    <div class="category-icon">🏎️</div>
-                    <h4>Luxury Cars</h4>
-                    <p>Premium vehicles with top features</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🚙</div>
-                    <h4>SUVs & Outdoor</h4>
-                    <p>Adventure-ready vehicles</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🚗</div>
-                    <h4>Family Cars</h4>
-                    <p>Safe and spacious for family</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">⚡</div>
-                    <h4>Electric Cars</h4>
-                    <p>Eco-friendly & modern</p>
-                </div>
-            </div>
-            <div class="section-2-features">
-                <h2 class="hiddenP">Why Choose Joel Cars?</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">✓</div>
-                        <h4>Quality Checked</h4>
-                        <p>Every car undergoes 150-point inspection</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">💰</div>
-                        <h4>Best Price</h4>
-                        <p>Guaranteed better prices than market</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🛡️</div>
-                        <h4>Warranty</h4>
-                        <p>6 months warranty on all cars</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🚚</div>
-                        <h4>Free Test Drive</h4>
-                        <p>Schedule a test drive at your convenience</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="cars-for-sale" class="section-3">
-            <div class="section-3-Description-div hidden">
-                <div class="section-header">
-                    <h3>Available Cars For Sale</h3>
-                    <p>Browse our quality used cars. Cars are automatically loaded from our GitHub repository.</p>
-                </div>
-                <div class="section-actions">
-                    <button id="refresh-cars" class="refresh-btn">
-                        <i class='bx bx-refresh'></i> Refresh Cars
-                    </button>
-                    <div class="view-toggle">
-                        <button class="view-btn active" data-view="grid">
-                            <i class='bx bx-grid-alt'></i> Grid
-                        </button>
-                        <button class="view-btn" data-view="list">
-                            <i class='bx bx-list-ul'></i> List
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="section-3-product-div" id="for-sale-container">
+            <div class="cars-container" id="for-sale-container">
                 <!-- Cars will be loaded here by JavaScript -->
             </div>
             <div class="loading-indicator" id="loading-cars">
@@ -151,14 +50,14 @@
                 <p>Loading available cars...</p>
             </div>
         </section>
-        <section id="cars-sold" class="section-3">
-            <div class="section-3-Description-div hidden">
-                <div class="section-header">
-                    <h3>Recently Sold Cars</h3>
-                    <p>See our happy customers with their new vehicles. New sold photos appear automatically.</p>
-                </div>
+
+        <!-- Sold Cars Section -->
+        <section id="cars-sold" class="car-section">
+            <div class="section-header">
+                <h2>Recently Sold Cars</h2>
+                <p>See our successful transactions. New sold photos appear automatically.</p>
             </div>
-            <div class="section-3-product-div" id="sold-container">
+            <div class="cars-container" id="sold-container">
                 <!-- Sold cars will be loaded here by JavaScript -->
             </div>
             <div class="loading-indicator" id="loading-sold">
@@ -166,15 +65,21 @@
                 <p>Loading sold cars...</p>
             </div>
         </section>
-        <section class="section-4">
-            <div class="contact-banner">
-                <h3>Want to Sell Your Car?</h3>
-                <p>Get the best price for your used car. Free valuation and quick payment.</p>
-                <div class="contact-actions">
-                    <a href="tel:+911234567890" class="contact-btn phone-btn">
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-content">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class='bx bx-phone'></i> Mobile: +91-1234567890</p>
+                    <p><i class='bx bx-map'></i> Address: Bangalore, India</p>
+                    <p><i class='bx bx-time'></i> Open: Monday to Saturday, 9AM - 8PM</p>
+                </div>
+                <div class="contact-buttons">
+                    <a href="tel:+911234567890" class="contact-btn">
                         <i class='bx bx-phone'></i> Call Now
                     </a>
-                    <a href="https://wa.me/911234567890" class="contact-btn whatsapp-btn" target="_blank">
+                    <a href="https://wa.me/911234567890" class="contact-btn whatsapp" target="_blank">
                         <i class='bx bxl-whatsapp'></i> WhatsApp
                     </a>
                 </div>
@@ -182,77 +87,28 @@
         </section>
     </main>
     <footer>
-        <div class="footer-container">
+        <div class="footer-content">
             <div class="footer-brand">
-                <h2 class="footer-logo">🚗 Joel Cars</h2>
-                <p class="footer-tagline">Quality used cars with transparency and trust</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon" aria-label="Instagram">
-                        <i class='bx bxl-instagram'></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Facebook">
-                        <i class='bx bxl-facebook'></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="YouTube">
-                        <i class='bx bxl-youtube'></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Twitter">
-                        <i class='bx bxl-twitter'></i>
-                    </a>
-                </div>
+                <h3>Joel Cars</h3>
+                <p>Quality used cars with transparency</p>
             </div>
-            
-            <div class="footer-section">
-                <h5>Contact Info</h5>
-                <div class="contact-info">
-                    <p><i class='bx bx-phone'></i> +91-1234567890</p>
-                    <p><i class='bx bx-envelope'></i> contact@joelcars.com</p>
-                    <p><i class='bx bx-map'></i> Bangalore, India</p>
-                    <p><i class='bx bx-time'></i> Mon-Sat: 9AM-8PM</p>
-                </div>
+            <div class="footer-links">
+                <a href="#cars-for-sale">Available Cars</a>
+                <a href="#cars-sold">Sold Cars</a>
+                <a href="tel:+911234567890">Contact</a>
             </div>
-            
-            <div class="footer-section">
-                <h5>Quick Links</h5>
-                <div class="footer-links">
-                    <a href="#cars-for-sale">Browse Cars</a>
-                    <a href="#cars-sold">Sold Cars</a>
-                    <a href="#">Sell Your Car</a>
-                    <a href="#">Test Drive</a>
-                    <a href="#">Financing</a>
-                    <a href="#">About Us</a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h5>Legal</h5>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                    <a href="#">Disclaimer</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 Joel Cars. All rights reserved.</p>
-            <p>Made with ❤️ for car enthusiasts</p>
+            <p class="copyright">&copy; 2024 Joel Cars. All rights reserved.</p>
         </div>
     </footer>
-    
-    <!-- Image Modal for larger view -->
+
+    <!-- Image Modal -->
     <div id="image-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <img id="modal-image" src="" alt="Enlarged Car Image">
-            <div class="modal-navigation">
-                <button id="prev-image"><i class='bx bx-chevron-left'></i></button>
-                <button id="next-image"><i class='bx bx-chevron-right'></i></button>
-            </div>
+            <img id="modal-image" src="" alt="Car Image">
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
