@@ -16,13 +16,17 @@ async function fetchFolderContents(path) {
 
 async function loadCars(containerId, basePath, isForSale = true) {
   const container = document.getElementById(containerId);
-  container.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding: 40px;">Loading cars...</p>';
+  container.innerHTML = '';
+  
+  // Show loading indicator
+  const loading = document.getElementById(`loading-${isForSale ? 'cars' : 'sold'}`);
+  if (loading) loading.style.display = 'block';
 
   const items = await fetchFolderContents(basePath);
-  container.innerHTML = '';
 
   if (items.length === 0) {
-    container.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding: 40px; color: #999;">No items found. Upload cars to GitHub!</p>';
+    container.innerHTML = '<p style="text-align:center; padding: 40px; color: #888;">No items found.</p>';
+    if (loading) loading.style.display = 'none';
     return;
   }
 
@@ -37,7 +41,7 @@ async function loadCars(containerId, basePath, isForSale = true) {
         const carName = item.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         carDiv.innerHTML = `<h3>${carName}</h3>`;
 
-        // Create gallery structure
+        // Create gallery
         const galleryDiv = document.createElement('div');
         galleryDiv.className = 'gallery';
 
@@ -55,7 +59,7 @@ async function loadCars(containerId, basePath, isForSale = true) {
         galleryDiv.appendChild(mainDiv);
         carDiv.appendChild(galleryDiv);
 
-        // Fetch car images from subfolder
+        // Fetch car images
         const subItems = await fetchFolderContents(item.path);
         const images = subItems
           .filter(sub => sub.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(sub.name))
@@ -65,7 +69,7 @@ async function loadCars(containerId, basePath, isForSale = true) {
           }));
 
         if (images.length === 0) {
-          carDiv.innerHTML += '<p style="color: #999; padding: 20px;">No images available</p>';
+          carDiv.innerHTML += '<p style="padding: 20px; color: #888; text-align: center;">No images</p>';
         } else {
           // Set initial main image
           mainImg.src = images[0].url;
@@ -74,66 +78,32 @@ async function loadCars(containerId, basePath, isForSale = true) {
           images.forEach((image, index) => {
             const thumbImg = document.createElement('img');
             thumbImg.src = image.url;
-            thumbImg.alt = `Thumbnail ${index + 1}`;
-            thumbImg.title = `Click to view`;
+            thumbImg.alt = `View ${carName} image ${index + 1}`;
             
-            // Add active class to first thumbnail
             if (index === 0) {
               thumbImg.classList.add('active');
             }
             
-            // Click event to change main image
             thumbImg.addEventListener('click', () => {
-              // Update main image
               mainImg.src = image.url;
-              
-              // Remove active class from all thumbnails
               thumbDiv.querySelectorAll('img').forEach(img => img.classList.remove('active'));
-              
-              // Add active class to clicked thumbnail
               thumbImg.classList.add('active');
-              
-              // Restart auto carousel from this image
               currentIndex = index;
-              clearInterval(interval);
-              startCarousel();
             });
             
             thumbDiv.appendChild(thumbImg);
           });
 
-          // Auto-carousel functionality
-          let currentIndex = 0;
-          let interval;
-          
-          const startCarousel = () => {
-            interval = setInterval(() => {
-              // Update current index
+          // Auto carousel
+          if (images.length > 1) {
+            let currentIndex = 0;
+            const interval = setInterval(() => {
               currentIndex = (currentIndex + 1) % images.length;
-              
-              // Update main image
               mainImg.src = images[currentIndex].url;
-              
-              // Update active thumbnail
               thumbDiv.querySelectorAll('img').forEach((img, idx) => {
                 img.classList.toggle('active', idx === currentIndex);
               });
-            }, 3000); // Change every 3 seconds
-          };
-          
-          // Pause carousel on hover
-          carDiv.addEventListener('mouseenter', () => {
-            if (interval) clearInterval(interval);
-          });
-          
-          // Resume carousel when mouse leaves
-          carDiv.addEventListener('mouseleave', () => {
-            if (images.length > 1) startCarousel();
-          });
-          
-          // Start the carousel
-          if (images.length > 1) {
-            startCarousel();
+            }, 3000);
           }
         }
 
@@ -143,49 +113,56 @@ async function loadCars(containerId, basePath, isForSale = true) {
   } 
   // Sold section
   else {
-    // Filter only image files
     const imageItems = items.filter(item => 
       item.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(item.name)
     );
     
-    if (imageItems.length === 0) {
-      container.innerHTML = '<p style="text-align:center; grid-column:1/-1; padding: 40px; color: #999;">No sold cars images found.</p>';
-      return;
-    }
-    
-    // Create sold cards
     imageItems.forEach(item => {
       const soldDiv = document.createElement('div');
       soldDiv.className = 'sold-card';
       
       const img = document.createElement('img');
       img.src = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}`;
-      img.alt = 'Sold Car';
-      img.title = 'Sold Car';
+      img.alt = 'Sold car';
       img.loading = 'lazy';
       
       soldDiv.appendChild(img);
       container.appendChild(soldDiv);
     });
   }
+
+  // Hide loading indicator
+  if (loading) loading.style.display = 'none';
 }
 
-// Initialize when page loads
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
   loadCars('for-sale-container', 'car-for-sale', true);
   loadCars('sold-container', 'car-sold', false);
   
-  // Add loading state styles
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  }
+  
+  // Close modal when clicking outside
+  const modal = document.getElementById('image-modal');
+  const closeModal = document.querySelector('.close-modal');
+  
+  if (modal && closeModal) {
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
     
-    .car-card, .sold-card {
-      animation: fadeIn 0.5s ease;
-    }
-  `;
-  document.head.appendChild(style);
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
 });
