@@ -1,212 +1,119 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Add these styles to your existing style.css */
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #000;
-    color: #fff;
-    line-height: 1.6;
-}
-
-/* Navigation */
-nav {
-    background: rgba(20, 20, 20, 0.95);
-    padding: 1rem 5%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #333;
-}
-#nav-items {
+/* Horizontal Scrollable Cars Container */
+.cars-container.horizontal {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0 2rem;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #222;
 }
-.pages { display: flex; gap: 2rem; }
-.pages a {
-    color: #ccc;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+
+.cars-container.horizontal::-webkit-scrollbar {
+    height: 8px;
+}
+
+.cars-container.horizontal::-webkit-scrollbar-thumb {
+    background: #555;
     border-radius: 4px;
-    transition: 0.3s;
-}
-.pages a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-.hamburger-menu { display: none; font-size: 1.8rem; cursor: pointer; }
-
-/* Hero */
-.hero {
-    background: linear-gradient(135deg, #111, #000);
-    padding: 5rem 5%;
-    text-align: center;
-}
-.hero-content h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #fff, #aaa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
 
-/* Sections */
-.car-section { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
-.section-header { text-align: center; margin-bottom: 3rem; }
-
-/* === AVAILABLE CARS - GRID (2 per row) === */
-.cars-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
-    gap: 2.5rem;
-}
-
-/* Car Card */
+/* Make car cards consistent width for horizontal layout */
 .car-card {
+    flex: 0 0 520px;           /* Fixed width for horizontal scroll */
+    min-width: 520px;
     background: rgba(30, 30, 30, 0.9);
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #333;
     transition: all 0.4s ease;
+    border: 1px solid #333;
 }
+
 .car-card:hover {
     transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     border-color: #666;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-}
-.car-card h3 {
-    padding: 1rem;
-    text-align: center;
-    background: rgba(40,40,40,0.9);
-    font-size: 1.3rem;
 }
 
-/* Gallery */
-.gallery {
-    padding: 1.5rem;
-    display: flex;
-    gap: 1.5rem;
-}
-.thumbnails {
-    flex: 0 0 110px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.thumbnails img {
-    width: 100%;
-    height: 75px;
-    object-fit: contain;
-    background: #222;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-.thumbnails img.active { border-color: #888; }
-
-.main-image img {
-    width: 100%;
-    max-width: 550px;
-    height: 380px;
-    object-fit: contain;
-    background: #222;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Sold Cars - Horizontal Scroll */
-.sold-carousel {
-    display: flex;
-    gap: 2rem;
-    animation: scrollSold 35s linear infinite;
-    width: max-content;
-}
-.sold-carousel:hover { animation-play-state: paused; }
-
-.sold-card {
-    flex: 0 0 400px;
-    min-width: 400px;
-    background: rgba(30,30,30,0.8);
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #333;
-}
-.sold-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: contain;
-    background: #222;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-@keyframes scrollSold {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* Modal */
+/* Modal Enhancements */
 .modal {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0, 0, 0, 0.95);
     z-index: 2000;
     align-items: center;
     justify-content: center;
 }
+
 .modal-content {
     position: relative;
     max-width: 95%;
     max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .modal-content img {
     max-width: 100%;
     max-height: 85vh;
     object-fit: contain;
     border-radius: 12px;
-}
-.close-modal {
-    position: absolute;
-    top: -60px;
-    right: 20px;
-    font-size: 40px;
-    color: #fff;
-    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
+/* Navigation Arrows */
 .modal-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.6);
     color: white;
+    font-size: 2.5rem;
     width: 60px;
     height: 60px;
-    font-size: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
     z-index: 10;
 }
+
+.modal-nav:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
 #modal-prev { left: 20px; }
 #modal-next { right: 20px; }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .cars-container {
-        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-    }
+.close-modal {
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    font-size: 42px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
 }
+
+/* Responsive */
 @media (max-width: 768px) {
-    .pages { display: none; }
-    .hamburger-menu { display: block; }
-    .cars-container {
-        grid-template-columns: 1fr;   /* 1 card per row on mobile */
+    .car-card {
+        flex: 0 0 92%;
+        min-width: 92%;
     }
-    .main-image img { height: 280px; }
+    
+    .modal-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
 }
