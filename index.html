@@ -1,295 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Joel Cars - Buy & Sell Quality Used Cars at Better Prices">
-    <title>Joel Cars - Buy & Sell Used Cars at Better Prices - Contact us - 9790165481</title>
+    <title>Joel Cars - Buy & Sell Used Cars at Better Prices - Contact us - 9790165481 </title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #000;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        /* Navigation, Hero, Sections, etc. - (Your original styles kept) */
-        nav {
-            background: rgba(20, 20, 20, 0.95);
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #333;
-        }
-        #nav-items {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            list-style: none;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .pages { display: flex; gap: 2rem; }
-        .pages a {
-            color: #ccc;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        .pages a:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .hamburger-menu { display: none; font-size: 1.5rem; cursor: pointer; }
-
-        .hero {
-            background: linear-gradient(135deg, #111 0%, #000 100%);
-            padding: 4rem 5%;
-            text-align: center;
-            border-bottom: 1px solid #222;
-        }
-        .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #888);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .car-section { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-
-        /* Horizontal Scroll for Available Cars */
-        .cars-container.horizontal {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 1rem 0 2rem;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: #555 #222;
-        }
-        .cars-container.horizontal::-webkit-scrollbar { height: 8px; }
-        .cars-container.horizontal::-webkit-scrollbar-thumb {
-            background: #555;
-            border-radius: 4px;
-        }
-
-        .car-card {
-            flex: 0 0 520px;
-            min-width: 520px;
-            background: rgba(30, 30, 30, 0.9);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid #333;
-        }
-        .car-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            border-color: #666;
-        }
-        .car-card h3 {
-            padding: 1rem;
-            font-size: 1.3rem;
-            text-align: center;
-            background: rgba(40, 40, 40, 0.9);
-        }
-
-        .gallery {
-            padding: 1.5rem;
-            display: flex;
-            gap: 1.5rem;
-        }
-        .thumbnails {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            flex: 0 0 100px;
-        }
-        .thumbnails img {
-            width: 100px;
-            height: 75px;
-            object-fit: contain;
-            background: #222;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-        .thumbnails img.active { border-color: #888; }
-
-        .main-image img {
-            width: 100%;
-            max-width: 550px;
-            height: 380px;
-            object-fit: contain;
-            background: #222;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        /* Sold Cars Carousel */
-        .sold-carousel {
-            display: flex;
-            gap: 2rem;
-            animation: scrollSold 40s linear infinite;
-            width: max-content;
-        }
-        .sold-carousel:hover { animation-play-state: paused; }
-        .sold-card {
-            flex: 0 0 420px;
-            min-width: 420px;
-            background: rgba(30, 30, 30, 0.8);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid #333;
-        }
-        .sold-card img {
-            width: 100%;
-            max-width: 400px;
-            height: 300px;
-            object-fit: contain;
-            background: #222;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        @keyframes scrollSold {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Professional Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            position: relative;
-            max-width: 95%;
-            max-height: 95vh;
-        }
-        .modal-content img {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-        }
-        .close-modal {
-            position: absolute;
-            top: -55px;
-            right: 10px;
-            font-size: 42px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            font-size: 2.8rem;
-            width: 65px;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            cursor: pointer;
-            user-select: none;
-            z-index: 10;
-            transition: all 0.3s;
-        }
-        .modal-nav:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-50%) scale(1.1);
-        }
-        #modal-prev { left: 20px; }
-        #modal-next { right: 20px; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .car-card { flex: 0 0 92%; min-width: 92%; }
-            .main-image img { height: 280px; }
-            .sold-card { flex: 0 0 300px; min-width: 300px; }
-            .pages { display: none; }
-            .hamburger-menu { display: block; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark">
 
-    <!-- Your HTML Content -->
+<body class="dark">
     <header>
         <nav>
             <ul id="nav-items">
-                <li id="Logo-brandname"><h1>Joel Cars</h1></li>
+                <li id="Logo-brandname">
+                    <h1>Joel Cars</h1>
+                </li>
                 <li class="pages">
-                    <a href="#">Home</a>
-                    <a href="#cars-for-sale">Browse Cars</a>
+                    <a class="Home" href="#">Home</a>
+                    <a class="Search" href="#cars-for-sale">Browse Cars</a>
                 </li>
                 <i class='bx bx-menu hamburger-menu' id="hamburger-menu"></i>
             </ul>
             <ul class="hamburger-menu-items" id="mobile-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#cars-for-sale">Browse Cars</a></li>
+                <li><a class="Home" href="#">Home</a></li>
+                <li><a class="Search" href="#cars-for-sale">Browse Cars</a></li>
                 <li><a href="#cars-sold">Sold Cars</a></li>
             </ul>
         </nav>
-
         <section class="hero">
             <div class="hero-content">
                 <h1>Buy & Sell Quality Used Cars - Contact us - 9790165481</h1>
-                <p>We connect buyers and sellers for the best deals on used cars. Quality checked vehicles at competitive prices.</p>
+                <p>We connect buyers and sellers for the best deals on used cars. Quality checked vehicles at competitive prices. please Contact us - 9790165481.</p>
                 <a href="#cars-for-sale" class="btn-primary">View Available Cars</a>
             </div>
         </section>
     </header>
-
     <main>
-        <!-- Available Cars -->
+        <!-- Cars For Sale Section -->
         <section id="cars-for-sale" class="car-section">
             <div class="section-header">
                 <h2>Available Cars For Sale</h2>
                 <p>Cars are automatically loaded from our repository. New cars appear when uploaded.</p>
             </div>
-            <div class="cars-container" id="for-sale-container"></div>
+            <div class="cars-container" id="for-sale-container">
+                <!-- Cars will be loaded here by JavaScript -->
+            </div>
             <div class="loading-indicator" id="loading-cars">
                 <div class="spinner"></div>
                 <p>Loading available cars...</p>
             </div>
         </section>
 
-        <!-- Sold Cars -->
+        <!-- Sold Cars Section -->
         <section id="cars-sold" class="car-section">
             <div class="section-header">
                 <h2>Recently Sold Cars</h2>
                 <p>See our successful transactions. New sold photos appear automatically.</p>
             </div>
             <div class="sold-carousel-container">
-                <div class="cars-container sold-carousel" id="sold-container"></div>
+                <div class="cars-container sold-carousel" id="sold-container">
+                    <!-- Sold cars will be loaded here by JavaScript -->
+                </div>
             </div>
             <div class="loading-indicator" id="loading-sold">
                 <div class="spinner"></div>
@@ -297,17 +70,19 @@
             </div>
         </section>
 
-        <!-- Contact -->
+        <!-- Contact Section -->
         <section class="contact-section">
             <div class="contact-content">
                 <h2>Contact Us</h2>
                 <div class="contact-info">
-                    <p><i class='bx bx-phone'></i> +91 9790165481</p>
-                    <p><i class='bx bx-map'></i> 1/1-1 Senthil Nagar Extension, Visuvasapuram, Saravanampatti, Coimbatore-641035</p>
-                    <p><i class='bx bx-time'></i> Monday to Saturday, 9AM - 8PM</p>
+                    <p><i class='bx bx-phone'></i> Mobile: Contact us -  +91 9790165481</p>
+                    <p><i class='bx bx-map'></i> Address: 1/1-1 Senthil Nagar Extension, Visuvasapuram, Saravanampatti, Coimbatore-641035</p>
+                    <p><i class='bx bx-time'></i> Open: Monday to Saturday, 9AM - 8PM</p>
                 </div>
                 <div class="contact-buttons">
-                    <a href="tel:+919790165481" class="contact-btn"><i class='bx bx-phone'></i> Call Now</a>
+                    <a href="tel:+919790165481" class="contact-btn">
+                        <i class='bx bx-phone'></i> Call Now
+                    </a>
                     <a href="https://wa.me/919790165481" class="contact-btn whatsapp" target="_blank">
                         <i class='bx bxl-whatsapp'></i> WhatsApp
                     </a>
@@ -315,7 +90,6 @@
             </div>
         </section>
     </main>
-
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -327,7 +101,7 @@
                 <a href="#cars-sold">Sold Cars</a>
                 <a href="tel:+919790165481">Contact</a>
             </div>
-            <p class="copyright">&copy; 2025 Joel Cars. All rights reserved.</p>
+            <p class="copyright">&copy; 2024 Joel Cars. All rights reserved.</p>
         </div>
     </footer>
 
@@ -339,157 +113,7 @@
         </div>
     </div>
 
-    <script>
-        const owner = 'vasanthkumargcp-gif';
-        const repo = 'joelcars11.com';
-        const branch = 'main';
-
-        let currentImages = [];
-        let currentIndex = 0;
-
-        async function fetchFolderContents(path) {
-            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
-            try {
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Failed');
-                return await res.json();
-            } catch (e) {
-                console.error(e);
-                return [];
-            }
-        }
-
-        async function loadCars(containerId, basePath, isForSale = true) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-
-            const loading = document.getElementById(isForSale ? 'loading-cars' : 'loading-sold');
-            if (loading) loading.style.display = 'block';
-
-            const items = await fetchFolderContents(basePath);
-
-            if (isForSale) {
-                container.classList.add('horizontal');
-                for (const item of items) {
-                    if (item.type !== 'dir') continue;
-
-                    const carName = item.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-
-                    const carDiv = document.createElement('div');
-                    carDiv.className = 'car-card';
-                    carDiv.innerHTML = `
-                        <h3>${carName}</h3>
-                        <div class="gallery">
-                            <div class="thumbnails"></div>
-                            <div class="main-image"><img src="" alt="${carName}" loading="lazy"></div>
-                        </div>
-                    `;
-                    container.appendChild(carDiv);
-
-                    const thumbContainer = carDiv.querySelector('.thumbnails');
-                    const mainImg = carDiv.querySelector('.main-image img');
-
-                    const subItems = await fetchFolderContents(item.path);
-                    const images = subItems
-                        .filter(sub => sub.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(sub.name))
-                        .map(sub => ({
-                            url: `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${sub.path}`
-                        }));
-
-                    if (images.length === 0) continue;
-
-                    mainImg.src = images[0].url;
-
-                    images.forEach((img, i) => {
-                        const thumb = document.createElement('img');
-                        thumb.src = img.url;
-                        thumb.loading = 'lazy';
-                        if (i === 0) thumb.classList.add('active');
-                        thumb.addEventListener('click', () => {
-                            mainImg.src = img.url;
-                            thumbContainer.querySelectorAll('img').forEach(t => t.classList.remove('active'));
-                            thumb.classList.add('active');
-                        });
-                        thumbContainer.appendChild(thumb);
-                    });
-
-                    mainImg.addEventListener('click', () => openImageModal(images, 0));
-                }
-            } else {
-                // Sold Cars
-                const imageItems = items.filter(item => 
-                    item.type === 'file' && /\.(jpg|jpeg|png|gif|webp)$/i.test(item.name)
-                );
-
-                imageItems.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'sold-card';
-                    div.innerHTML = `<img src="https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}" loading="lazy">`;
-                    div.querySelector('img').addEventListener('click', () => {
-                        openImageModal([{url: div.querySelector('img').src}], 0);
-                    });
-                    container.appendChild(div);
-                });
-
-                if (imageItems.length > 0) container.innerHTML += container.innerHTML;
-            }
-
-            if (loading) loading.style.display = 'none';
-        }
-
-        function openImageModal(images, startIndex) {
-            currentImages = images;
-            currentIndex = startIndex;
-            document.getElementById('modal-image').src = currentImages[currentIndex].url;
-            document.getElementById('image-modal').style.display = 'flex';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCars('for-sale-container', 'car-for-sale', true);
-            loadCars('sold-container', 'car-sold', false);
-
-            // Hamburger Menu
-            document.getElementById('hamburger-menu').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.toggle('active');
-            });
-
-            // Modal Controls
-            const modal = document.getElementById('image-modal');
-            const closeBtn = document.querySelector('.close-modal');
-
-            closeBtn.addEventListener('click', () => modal.style.display = 'none');
-            modal.addEventListener('click', e => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
-
-            // Create Left & Right Arrows
-            const modalContent = document.querySelector('.modal-content');
-
-            const prev = document.createElement('div');
-            prev.id = 'modal-prev';
-            prev.className = 'modal-nav';
-            prev.innerHTML = '‹';
-            prev.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    document.getElementById('modal-image').src = currentImages[currentIndex].url;
-                }
-            });
-
-            const next = document.createElement('div');
-            next.id = 'modal-next';
-            next.className = 'modal-nav';
-            next.innerHTML = '›';
-            next.addEventListener('click', () => {
-                if (currentIndex < currentImages.length - 1) {
-                    currentIndex++;
-                    document.getElementById('modal-image').src = currentImages[currentIndex].url;
-                }
-            });
-
-            modalContent.appendChild(prev);
-            modalContent.appendChild(next);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
